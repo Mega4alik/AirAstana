@@ -37,8 +37,37 @@ import org.json.JSONObject;
 
 public class API {
     Global g = new Global();
+    public String getResultsFor(String[] command){        
+        String outputString = "";
+        Process curlProc;
+        try {
+            curlProc = Runtime.getRuntime().exec(command); 
 
+            BufferedReader curlIn = new BufferedReader(new InputStreamReader(curlProc.getInputStream()));
+
+            String line = "";
+            try {
+               while ((line = curlIn.readLine()) != null){
+                //System.out.println(line.toString());
+                outputString +=line.toString() + "\n";
+               }
+
+
+            } catch (IOException e) {
+            
+            }        
+
+            curlProc.destroy();
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+            //System.out.println(e1);
+            return null;
+        }
     
+        return outputString;
+    }
+
     
 }
 

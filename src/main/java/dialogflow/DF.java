@@ -9,6 +9,7 @@ package dialogflow;
  *
  * @author admin
  */
+import cm.API;
 import com.google.gson.Gson;
 import global.Conn;
 import global.Global;
@@ -39,38 +40,28 @@ public class DF {
         DFNode node = new DFNode();
         question = URLEncoder.encode(question);
         
-        HttpURLConnection httpcon = (HttpURLConnection) ((new URL("https://api.dialogflow.com/v1/query?v=20170712&query="+question+"&lang="+(g.LangDefault == 2 ? "en":"ru")+"&sessionId=1cf9c76b-c880-0535-7416-426430832775&timezone=Asia/Almaty").openConnection()));
-            httpcon.setDoOutput(true);               
-            httpcon.setRequestProperty("Accept", "application/json");
-            httpcon.setRequestMethod("GET");            
-            httpcon.setRequestProperty("Authorization", "Bearer " + (g.LangDefault==2 ? "a44e30cc14bb4e5a95a3d8564f21de91" : "91d2c7122e3e4c14b6ffcce6e4ae903a"));
-                
-            //91d2c7122e3e4c14b6ffcce6e4ae903a - AICC-Demo-RU
-            //a44e30cc14bb4e5a95a3d8564f21de91 - AICC-Demo-ENG
-            httpcon.connect();                      
-            InputStream content = (InputStream) httpcon.getInputStream();
-            BufferedReader in   = new BufferedReader (new InputStreamReader (content));
-            String line, jsonSt = "";
-            while ((line = in.readLine()) != null) jsonSt+=line;                               
-            System.out.println(jsonSt);
-            
-            JSONObject obj = new JSONObject(jsonSt);
-            JSONObject result = obj.getJSONObject("result"); 
-            if (result.has("metadata")){
-                JSONObject metadata = result.getJSONObject("metadata");
-                if (metadata.has("intentName")) node.intentName = metadata.getString("intentName");
-            }                        
-            if (result.has("action")) node.action = result.getString("action");
-            if (result.has("fulfillment")){
-                JSONObject fulfillment = result.getJSONObject("fulfillment");                
-                node.speech = fulfillment.getString("speech");
-                /*
+        API api = new API();
+        String[] command = new String[]{"curl", "https://api.dialogflow.com/v1/query?v=20170712&query="+question+"&lang="+(g.LangDefault == 2 ? "en":"ru")+"&sessionId=1cf9c76b-c880-0535-7416-426430832774&timezone=Asia/Almaty", "-H", "Authorization:Bearer "+(g.LangDefault == 2 ? "a44e30cc14bb4e5a95a3d8564f21de91":"91d2c7122e3e4c14b6ffcce6e4ae903a")};
+        String jsonSt = api.getResultsFor(command);
+        System.out.println(jsonSt);            
+        
+        JSONObject obj = new JSONObject(jsonSt);
+        JSONObject result = obj.getJSONObject("result"); 
+        if (result.has("metadata")){
+            JSONObject metadata = result.getJSONObject("metadata");
+            if (metadata.has("intentName")) node.intentName = metadata.getString("intentName");
+        }
+        if (result.has("action")) node.action = result.getString("action");
+        if (result.has("fulfillment")){
+            JSONObject fulfillment = result.getJSONObject("fulfillment");                
+            node.speech = fulfillment.getString("speech");
+            /*
                 if (fulfillment.has("messages")){
                    String message = fulfillment.getJSONArray("messages").getJSONObject(0).getString("speech");
                    System.out.println(message);
-                }*/                
-            }
-            return node;            
+            }*/                
+        }
+        return node;            
     }
     
     
