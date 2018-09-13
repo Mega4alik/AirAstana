@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<html>
+    <head>
+        <title>Search tool</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>     
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>                
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>        
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                
+            });
+            
+            function search(){
+                var query = $('#search-value').val();
+                $.ajax({
+                   url:'Serv_Func',
+                   type:'post',
+                   data:{'action':'IRSearch','query':query},                   
+                   dataType:'json',
+                   success:function(j){                       
+                       var html = '';                               
+                       for (var i=0;i<j.length;i++){
+                           var q = j[i];
+                           html+='<div class="block"><a target="blank" href="'+q['buttons'][0]['url']+'">'+q['title']+'</a><br>'+q['subtitle']+'<hr></div>';
+                       }
+                       $('#result').html(html);
+                   }
+                });
+            }
+        </script>
+    </head>
+    <body style="margin-top:50px;margin-left:50px;">
+        <div class="row">  
+        <div class="col-lg-8">
+          <div class="input-group">
+            <input type="text" class="form-control" id="search-value" placeholder="Search in kkb.kz, homebank.userecho.com">
+            <span class="input-group-btn">
+              <button class="btn btn-success" type="button" onclick="search()">Search!</button>
+            </span>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+        <br>
+        <div id="result">
+        </div>
+        <br><br>
+    </body>
+</html>
