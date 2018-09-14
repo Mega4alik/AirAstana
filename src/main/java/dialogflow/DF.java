@@ -69,7 +69,7 @@ public class DF {
         API api = new API();
         
         String[] command = new String[]{"curl", "-H", "Content-Type: application/json; charset=utf-8", 
-           "-H", "Authorization: Bearer "+(g.LangDefault == 2 ? "a44e30cc14bb4e5a95a3d8564f21de91":"ya29.c.EloXBtlC__gQe2E9jYVB6cu4MElxXnpWX-b0hpgNyP-DpgBTv2idH7kcJIom-IXVvI3PhVZDmjps_NVbD8L7MJeKQJF93lv0fwzMfOShTQJt26e-54LygBjojDs"), "-d", "{\"queryInput\":{\"text\":{\"text\":\""+question+"\",\"languageCode\":\""+(g.LangDefault == 2 ? "en":"ru")+"\"}},\"queryParams\":{\"timeZone\":\"Asia/Almaty\"}}", "https://dialogflow.googleapis.com/v2/projects/tourism-fec23/agent/sessions/1cf9c76b-c880-0535-7416-426430832775:detectIntent"};
+           "-H", "Authorization: Bearer "+(g.LangDefault == 2 ? "a44e30cc14bb4e5a95a3d8564f21de91":"ya29.c.EloYBpwRHeGtklJIddSA9c21OEccqEUcdacums4ZYKn6nuCPEgtO534Ca0aPnHOsu5evbwKqDycS9mOA0IGJ8pBxDLvwfSKQcER1CfHZlujPVntvaXHDZfgBxNI"), "-d", "{\"queryInput\":{\"text\":{\"text\":\""+question+"\",\"languageCode\":\""+(g.LangDefault == 2 ? "en":"ru")+"\"}},\"queryParams\":{\"timeZone\":\"Asia/Almaty\"}}", "https://dialogflow.googleapis.com/v2/projects/tourism-fec23/agent/sessions/1cf9c76b-c880-0535-7416-426430832775:detectIntent"};
         
         String jsonSt = api.getResultsFor(command);
         System.out.println(jsonSt);            
@@ -79,10 +79,11 @@ public class DF {
         if (obj.has("queryResult")){
             result = obj.getJSONObject("queryResult");
         } 
+        String intentName="";
         if (result.has("intent")){
             JSONObject intent = result.getJSONObject("intent");
             if (intent.has("displayName")) {
-                node.intentName = intent.getString("displayName");
+                intentName = intent.getString("displayName");
                 
             }
             
@@ -101,8 +102,9 @@ public class DF {
         if (result.has("parameters")){
             JSONObject parameters = result.getJSONObject("parameters");
             
-            switch (node.intentName){
+            switch (intentName){
                 case ("through_registration"):{
+                    node.intentName = intentName;
                     if (result.has("allRequiredParamsPresent")){
                         Boolean allParamsPresent = result.getBoolean("allRequiredParamsPresent");
                         if (allParamsPresent){
@@ -114,6 +116,7 @@ public class DF {
                     break;
                 }
                 case ("flight_time"):{
+                    node.intentName = intentName;
                     if (result.has("allRequiredParamsPresent")){
                         Boolean allParamsPresent = result.getBoolean("allRequiredParamsPresent");
                         if (allParamsPresent){
@@ -125,6 +128,7 @@ public class DF {
                     break;
                 }
                 case ("rebook_ticket"):{
+                    node.intentName = intentName;
                     if (result.has("allRequiredParamsPresent")){
                         Boolean allParamsPresent = result.getBoolean("allRequiredParamsPresent");
                         if (allParamsPresent){                            
@@ -134,13 +138,23 @@ public class DF {
                     }
                     break;
                 }
+                
+                case ("change ticket"):{
+                    node.intentName = "operator_connect";
+                    break;
+                }
+                case ("boardingpass_lost"):{
+                    node.intentName = intentName;
+                    break;
+                }
                 case ("baggage_allowed"):{
+                    node.intentName = intentName;
                     String baggage_allowed = "";
-                    if (result.has("baggage_allowed")){
+                    if (parameters.has("baggage_allowed")){
                         baggage_allowed = parameters.getString("baggage_allowed");
                     }
                     if (!baggage_allowed.isEmpty()){  
-                        node.speech = "Поиск перевозки " + baggage_allowed;
+
                     } else {
                         node.speech = "\"Предметы личного пользования разрешенные к перевозке :\n" +
                                             "один предмет верхней одежды или плед;\n" +
