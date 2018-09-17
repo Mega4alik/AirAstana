@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>war</packaging>
+                <packaging>ear</packaging>
+                <packaging>ejb</packaging>
+            </packagings>
+            <goals>
+                <goal>package</goal>
+            </goals>
+            <properties>
+                <netbeans.deploy>true</netbeans.deploy>
+                <Env.GOOGLE_APPLICATION_CREDENTIALS>/home/raushan/work/AirAstana/tourism-fec23-4a9e904a7f25.json</Env.GOOGLE_APPLICATION_CREDENTIALS>
+                
+                
+                
+                
+                
+                
+                
+            </properties>
+        </action>
+        <action>
+            <actionName>run.single.main</actionName>
+            <packagings>
+                <packaging>*</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-classpath %classpath ${packageClassName}</exec.args>
+                <exec.executable>java</exec.executable>
+                <exec.classpathScope>${classPathScope}</exec.classpathScope>
+                <GOOGLE_APPLICATION_CREDENTIALS>"/home/raushan/work/AirAstana/tourism-fec23-4a9e904a7f25.json"</GOOGLE_APPLICATION_CREDENTIALS>
+                <Env.GOOGLE_APPLICATION_CREDENTIALS>/home/raushan/work/AirAstana/tourism-fec23-4a9e904a7f25.json</Env.GOOGLE_APPLICATION_CREDENTIALS>
+            </properties>
+        </action>
+        <action>
+            <actionName>build</actionName>
+            <packagings>
+                <packaging>*</packaging>
+            </packagings>
+            <goals>
+                <goal>install</goal>
+            </goals>
+            <properties>
+                <Env.GOOGLE_APPLICATION_CREDENTIALS>/home/raushan/work/AirAstana/tourism-fec23-4a9e904a7f25.json</Env.GOOGLE_APPLICATION_CREDENTIALS>
+            </properties>
+        </action>
+    </actions>
