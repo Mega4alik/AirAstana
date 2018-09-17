@@ -10,6 +10,7 @@ package dialogflow;
  * @author admin
  */
 import cm.API;
+import static cm.API.detectIntentTexts;
 import com.google.gson.Gson;
 import global.Conn;
 import global.Global;
@@ -31,7 +32,7 @@ public class DF {
     Global g = new Global();
     public static void main(String args[]) throws Exception {
         DF df = new DF();
-        df.getResponse("как дела");
+        df.getResponse("привет");
     }
     
     public DFNode getResponse(String question) throws Exception {
@@ -67,11 +68,13 @@ public class DF {
 	DFNode node = new DFNode();
         
         API api = new API();
-        
-        String[] command = new String[]{"curl", "-H", "Content-Type: application/json; charset=utf-8", 
-           "-H", "Authorization: Bearer "+(g.LangDefault == 2 ? "a44e30cc14bb4e5a95a3d8564f21de91":"ya29.c.EloYBpwRHeGtklJIddSA9c21OEccqEUcdacums4ZYKn6nuCPEgtO534Ca0aPnHOsu5evbwKqDycS9mOA0IGJ8pBxDLvwfSKQcER1CfHZlujPVntvaXHDZfgBxNI"), "-d", "{\"queryInput\":{\"text\":{\"text\":\""+question+"\",\"languageCode\":\""+(g.LangDefault == 2 ? "en":"ru")+"\"}},\"queryParams\":{\"timeZone\":\"Asia/Almaty\"}}", "https://dialogflow.googleapis.com/v2/projects/tourism-fec23/agent/sessions/1cf9c76b-c880-0535-7416-426430832775:detectIntent"};
-        
-        String jsonSt = api.getResultsFor(command);
+       
+        /*String[] command = new String[]{"curl", "-H", "Content-Type: application/json; charset=utf-8", 
+           "-H", "Authorization: Bearer "+(g.LangDefault == 2 ? "a44e30cc14bb4e5a95a3d8564f21de91":"ya29.GlwbBvFJeFO172bPC3s5McBaM4VG8JfgVkO9e3mEmy_0ReE0WPZSV3OTR1Zp9NV3kqTFV4puoGALqH1fI76xC4-ZZreFEXd7MeasguCUxTZUnTtO4bTz1CRJNQBDTg"), "-d", "{\"queryInput\":{\"text\":{\"text\":\""+question+"\",\"languageCode\":\""+(g.LangDefault == 2 ? "en":"ru")+"\"}},\"queryParams\":{\"timeZone\":\"Asia/Almaty\"}}", "https://dialogflow.googleapis.com/v2/projects/tourism-fec23/agent/sessions/1cf9c76b-c880-0535-7416-426430832775:detectIntent"};
+        */
+        node = API.detectIntentTexts(node, "tourism-fec23", question,
+        "1cf9c76b-c880-0535-7416-426430832775", "ru");
+        /*String jsonSt = api.getResultsFor(command);
         System.out.println(jsonSt);            
         
         JSONObject obj = new JSONObject(jsonSt);
@@ -98,7 +101,7 @@ public class DF {
                    String message = fulfillment.getJSONArray("messages").getJSONObject(0).getString("speech");
                    System.out.println(message);
             }*/
-        }
+        /*}
         if (result.has("parameters")){
             JSONObject parameters = result.getJSONObject("parameters");
             
@@ -174,7 +177,7 @@ public class DF {
 
             }
         }
-        
+        */
         
         return node;            
     }
