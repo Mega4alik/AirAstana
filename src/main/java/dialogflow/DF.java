@@ -39,9 +39,7 @@ public class DF {
         //curl 'https://api.dialogflow.com/v1/query?v=20170712&query=hi&lang=en&sessionId=1cf9c76b-c880-0535-7416-426430832774&timezone=Asia/Almaty' -H 'Authorization:Bearer 538073c6d4b54dc1a8bea4dea756ef56'
         //curl 'https://api.dialogflow.com/v1/query?v=20170712&query=hi&lang=en&sessionId=1cf9c76b-c880-0535-7416-426430832774&timezone=Asia/Almaty' -H 'Authorization:Bearer a44e30cc14bb4e5a95a3d8564f21de91'
 	/*
-
-
-	 DFNode node = new DFNode();
+        DFNode node = new DFNode();
         question = URLEncoder.encode(question);
         
         API api = new API();
@@ -67,13 +65,14 @@ public class DF {
 	/*}*/       
 	DFNode node = new DFNode();
         
-        API api = new API();
+        //API api = new API();
        
         /*String[] command = new String[]{"curl", "-H", "Content-Type: application/json; charset=utf-8", 
            "-H", "Authorization: Bearer "+(g.LangDefault == 2 ? "a44e30cc14bb4e5a95a3d8564f21de91":"ya29.GlwbBvFJeFO172bPC3s5McBaM4VG8JfgVkO9e3mEmy_0ReE0WPZSV3OTR1Zp9NV3kqTFV4puoGALqH1fI76xC4-ZZreFEXd7MeasguCUxTZUnTtO4bTz1CRJNQBDTg"), "-d", "{\"queryInput\":{\"text\":{\"text\":\""+question+"\",\"languageCode\":\""+(g.LangDefault == 2 ? "en":"ru")+"\"}},\"queryParams\":{\"timeZone\":\"Asia/Almaty\"}}", "https://dialogflow.googleapis.com/v2/projects/tourism-fec23/agent/sessions/1cf9c76b-c880-0535-7416-426430832775:detectIntent"};
         */
         node = API.detectIntentTexts(node, "tourism-fec23", question,
         "1cf9c76b-c880-0535-7416-426430832775", "ru");
+        
         /*String jsonSt = api.getResultsFor(command);
         System.out.println(jsonSt);            
         
