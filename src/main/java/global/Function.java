@@ -69,7 +69,7 @@ public class Function {
     public static void main(String args[]) throws Exception {
         Function f = new Function(1);              
         //System.out.println("idx-"+f.answerToIdx("_USER-Ask"));
-        System.out.println(f.gson.toJson(f.getClosestQAV1("заказать звонок"))); //найти бухгалтера
+        System.out.println(f.gson.toJson(f.getClosestQADF("заказать звонок"))); //найти бухгалтера
     } 
     
 
@@ -129,7 +129,6 @@ public class Function {
         
         if (g.QAML_version == 1 || g.QAML_version == 2){
             SWTree = gson.fromJson(g.getFileContent(g.Path+"/data/semanticweb_data.txt"), SWNode[].class);
-
 
             Type tt2 = new TypeToken<HashMap<String, RelationObject>>(){}.getType();
             ROMap = gson.fromJson(g.getFileContent(g.Path+"/data/objects_data.txt"), tt2);                

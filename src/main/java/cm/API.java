@@ -101,6 +101,7 @@ public class API {
       String languageCode) throws Exception {
       
     // Instantiates a client
+    
     try (SessionsClient sessionsClient = SessionsClient.create()) {
       // Set the session name using the sessionId (UUID) and projectID (my-project-id)
       SessionName session = SessionName.of(projectId, sessionId);
@@ -198,6 +199,8 @@ public class API {
                 default: break;
 
             }
+        } catch(Exception e){
+            e.printStackTrace();
         }
         
         return node;
