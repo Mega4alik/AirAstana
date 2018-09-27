@@ -1,0 +1,18 @@
+I Check it using localhost first
+
+II Deploy on gcloud
+JAVA war
+NODE JS folder
+Database
+FILES
+
+III Test it on server using temp Google token
+
+IV Test it using OAUTH 
+
+OPen the port 3201
+might be 8000
+node
+war
+key file with the same path
+
