@@ -264,7 +264,9 @@ public class API {
                 default: break;
 
             }
-        }  
+        } catch(Exception e){
+            e.printStackTrace();
+        }
         return node;
     }
     

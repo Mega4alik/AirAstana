@@ -60,7 +60,7 @@ public class Mind {
     public void ini() throws Exception{
         if (!initialized){
             initialized = true;            
-            QRs = gson.fromJson(g.getFileContent(g.Path+"/data/quickreply_data.txt"), QRFamily[].class);            
+            //QRs = gson.fromJson(g.getFileContent(g.Path+"/data/quickreply_data.txt"), QRFamily[].class);            
         }
     }
 
@@ -95,9 +95,9 @@ public class Mind {
     
     public boolean isMovedToOperator(int uid){
         try{
-        User u = dbQ.getUser(uid);         
-        if (g.getDateDiff(g.getCurrDate(), u.lastMovedToOperator) < 0.5 * 60 * 60) return true; 
-        } catch(Exception e){e.printStackTrace();}
+            User u = dbQ.getUser(uid);         
+            if (g.getDateDiff(g.getCurrDate(), u.lastMovedToOperator) < 0.5 * 60 * 60) return true; 
+        } catch(Exception e){}
         return false;
     }    
     
