@@ -277,7 +277,7 @@ public class Mind {
         //endOf go back or finish
         
         //move to operator
-        if (dgn.id.equals("_FOR")){ //move to operator            
+        if (dgn.id.equals("operator_connect")){ //move to operator            
             dbQ.OperatorMovedSet(user_id);            
             dn.r = 9;
             dn.quickReply = null;dn.list = null;
