@@ -261,6 +261,11 @@ public class API {
                     }
                     break;
                 }
+                case ("operator_connect"):{
+                    node.intentName = intentName;
+                    
+                    break;
+                }
                 default: break;
 
             }

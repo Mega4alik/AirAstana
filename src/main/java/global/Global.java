@@ -38,17 +38,17 @@ public class Global {
     public static final int run_mode = 1;//1-localhost, 2-production
     
     public static int OS = 2;//local 1-osx, 2 - local linux
-    /*public String Path = "/Users/Admin/Documents/Projects/AIRA/",
+    public String Path = "/Users/Admin/Documents/Projects/AIRA/",
     nodeJSURL = "http://localhost:3401",
     mysqlDB="ailabs_aira", mysqlUser="root", mysqlPassword="220693",
     fbToken = "EAAbK7dGSQ34BAFaBTKqBYVi28kBjNMnksZA4eRrXZAMmLiND3vlwk9kHXbK6QFs8EymvgcFy5vk8Rhy59b05Id1XQ7k79k5wIMAjZAo7ZBRM058C8EPnHZBzQf1Pz3U0zHg9JrD90Vy9ulUYVwCLHulj1bVmPAUqtUS6VVkdexQZDZD";//Dake Bot
-    */
     
+    /*
     public String Path = "/home/raushan/work/bot/AICC_FILES/",
     nodeJSURL = "http://localhost:3201",
     mysqlDB="ailabs_aicc", mysqlUser="root", mysqlPassword="12345",
     fbToken = "EAAbK7dGSQ34BAFaBTKqBYVi28kBjNMnksZA4eRrXZAMmLiND3vlwk9kHXbK6QFs8EymvgcFy5vk8Rhy59b05Id1XQ7k79k5wIMAjZAo7ZBRM058C8EPnHZBzQf1Pz3U0zHg9JrD90Vy9ulUYVwCLHulj1bVmPAUqtUS6VVkdexQZDZD";//Dake Bot        
-    
+    */
     
     {
         if (run_mode == 2){//production
