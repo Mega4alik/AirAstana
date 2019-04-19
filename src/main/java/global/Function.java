@@ -69,7 +69,7 @@ public class Function {
     public static void main(String args[]) throws Exception {
         Function f = new Function(1);              
         //System.out.println("idx-"+f.answerToIdx("_USER-Ask"));
-        System.out.println(f.gson.toJson(f.getClosestQADF("привет"))); //найти бухгалтера
+        System.out.println(f.gson.toJson(f.getClosestQADF("заказать звонок"))); //найти бухгалтера
     } 
     
 
@@ -621,7 +621,7 @@ public class Function {
     public DNode getClosestQADF(String question) throws Exception{
         DNode res = new DNode();
         DF df = new DF();        
-        DFNode dfn = df.getResponseV1(question);
+        DFNode dfn = df.getResponse(question);
         if (dfn!=null){            
             if (dfn.intentName!=null) { 
                 if (dfn.intentName.equals("operator_connect")) res.r = 9;

@@ -13,7 +13,7 @@
             <properties>
                 <netbeans.deploy>true</netbeans.deploy>
                 
-                <Env.GOOGLE_APPLICATION_CREDENTIALS>/Users/admin/Documents/Projects/AirAstana/ailabskz10-6bacc204303a.json</Env.GOOGLE_APPLICATION_CREDENTIALS>               
+                <Env.GOOGLE_APPLICATION_CREDENTIALS>/Users/admin/Desktop/NetBeansProjects/aira/tourism-fec23-4a9e904a7f25.json</Env.GOOGLE_APPLICATION_CREDENTIALS>               
             </properties>
         </action>
         <action>
@@ -30,7 +30,7 @@
                 <exec.executable>java</exec.executable>
                 <exec.classpathScope>${classPathScope}</exec.classpathScope>
                 
-                <Env.GOOGLE_APPLICATION_CREDENTIALS>/Users/admin/Documents/Projects/AirAstana/ailabskz10-6bacc204303a.json</Env.GOOGLE_APPLICATION_CREDENTIALS>
+                <Env.GOOGLE_APPLICATION_CREDENTIALS>/Users/admin/Desktop/NetBeansProjects/aira/tourism-fec23-4a9e904a7f25.json</Env.GOOGLE_APPLICATION_CREDENTIALS>
             </properties>
         </action>
         <action>
@@ -41,34 +41,9 @@
             <goals>
                 <goal>install</goal>
             </goals>
-        </action>
-        <action>
-            <actionName>run.single.deploy</actionName>
-            <packagings>
-                <packaging>war</packaging>
-            </packagings>
-            <goals>
-                <goal>package</goal>
-            </goals>
             <properties>
-                <netbeans.deploy>true</netbeans.deploy>
-                <netbeans.deploy.clientUrlPart>${webpagePath}</netbeans.deploy.clientUrlPart>
-                <Env.GOOGLE_APPLICATION_CREDENTIALS>/Users/admin/Documents/Projects/AirAstana/ailabskz10-6bacc204303a.json</Env.GOOGLE_APPLICATION_CREDENTIALS>
-            </properties>
-        </action>
-        <action>
-            <actionName>profile</actionName>
-            <packagings>
-                <packaging>ejb</packaging>
-                <packaging>ear</packaging>
-                <packaging>war</packaging>
-            </packagings>
-            <goals>
-                <goal>package</goal>
-            </goals>
-            <properties>
-                <netbeans.deploy>true</netbeans.deploy>
-                <netbeans.deploy.profilemode>true</netbeans.deploy.profilemode>
+                
+                
             </properties>
         </action>
     </actions>
