@@ -37,7 +37,7 @@ public class Global {
     
     public static final int run_mode = 1;//1-localhost, 2-production
     
-    public static int OS = 1;//local 1-osx, 2 - local linux
+    public static int OS = 2;//local 1-osx, 2 - local linux
     public String Path = "/Users/Admin/Documents/Projects/AIRA/",
     nodeJSURL = "http://localhost:3401",
     mysqlDB="ailabs_aira", mysqlUser="root", mysqlPassword="220693",

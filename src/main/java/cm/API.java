@@ -243,7 +243,7 @@ public class API {
                 case ("baggage_allowed"):{
                     node.intentName = intentName;
                     Value baggage_allowed = l.getFieldsOrDefault("baggage_allowed", null);
-                    
+
                     if (!baggage_allowed.getStringValue().isEmpty()){  
 
                     } else {
@@ -264,13 +264,6 @@ public class API {
                 case ("operator_connect"):{
                     node.intentName = intentName;
                     
-                    break;
-                }
-                case ("rate_bot"):{
-                    node.intentName = intentName;
-                    if (allRequiredParamsPresent){                                      
-                        node.speech = "Спасибо!";
-                    }
                     break;
                 }
                 default: break;
