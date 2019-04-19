@@ -53,8 +53,7 @@ public class Global {
     {
         if (run_mode == 2){//production
             Path = "/home/ubuntu/ai/AICC_FILES/";
-            nodeJSURL = "http://104.196.181.22:3201"; 
-            
+            nodeJSURL = "http://104.196.181.22:3201";             
             fbToken = "EAAbK7dGSQ34BAFaBTKqBYVi28kBjNMnksZA4eRrXZAMmLiND3vlwk9kHXbK6QFs8EymvgcFy5vk8Rhy59b05Id1XQ7k79k5wIMAjZAo7ZBRM058C8EPnHZBzQf1Pz3U0zHg9JrD90Vy9ulUYVwCLHulj1bVmPAUqtUS6VVkdexQZDZD";//Dake Bot
             //fbToken = "EAAWkji7QfbsBAKfnszePq1ZCBiewzq3lIy9OPOyPYT3N3kFntwFoXDQlXXwnWQNQuJaLzZB11QHCl1zpohPT7ZAwcHgywZA18X3T2x096z7eoLCmKeApVu3aIbsoogm6qZC79wob3vjdvPC6kB7EMmI2aUH22qQVHvNh1hiQmZBGMnpGBSY3se";//AILabsDemoBot    
         }
