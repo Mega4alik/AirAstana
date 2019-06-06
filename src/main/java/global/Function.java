@@ -69,7 +69,9 @@ public class Function {
     public static void main(String args[]) throws Exception {
         Function f = new Function(1);              
         //System.out.println("idx-"+f.answerToIdx("_USER-Ask"));
-        System.out.println(f.gson.toJson(f.getClosestQADF("заказать звонок"))); //найти бухгалтера
+        //export GOOGLE_APPLICATION_CREDENTIALS="/Users/admin/Documents/Projects/AirAstana/ailabskz10-6bacc204303a.json"
+                
+        System.out.println(f.gson.toJson(f.getClosestQADF("start"))); //найти бухгалтера
     } 
     
 

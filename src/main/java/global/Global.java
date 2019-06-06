@@ -5,7 +5,6 @@
  */
 package global;
 
-import com.vdurmont.emoji.EmojiParser;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -35,11 +34,11 @@ public class Global {
     public static final int LangDefault = 1;//1-RUS, 2 - EN, 
     public static final int QAML_version = 9;//1 - old, 2 - new, 9 - dialogflow 
     
-    public static final int run_mode = 1;//1-localhost, 2-production
+    public static final int run_mode = 2; //1-localhost, 2-production
     
-    public static int OS = 2;//local 1-osx, 2 - local linux
-    public String Path = "/Users/Admin/Documents/Projects/AIRA/",
-    nodeJSURL = "http://localhost:3401",
+    public static int OS = 1;//local 1-osx, 2 - local linux
+    public String Path = "/Users/Admin/Documents/Projects/AirAstana/",
+    nodeJSURL = "http://localhost:8000",
     mysqlDB="ailabs_aira", mysqlUser="root", mysqlPassword="220693",
     fbToken = "EAAbK7dGSQ34BAFaBTKqBYVi28kBjNMnksZA4eRrXZAMmLiND3vlwk9kHXbK6QFs8EymvgcFy5vk8Rhy59b05Id1XQ7k79k5wIMAjZAo7ZBRM058C8EPnHZBzQf1Pz3U0zHg9JrD90Vy9ulUYVwCLHulj1bVmPAUqtUS6VVkdexQZDZD";//Dake Bot
     
@@ -52,9 +51,8 @@ public class Global {
     
     {
         if (run_mode == 2){//production
-            Path = "/home/ubuntu/ai/AICC_FILES/";
-            nodeJSURL = "http://104.196.181.22:3201"; 
-            
+            Path = "/home/ubuntu/ai/AirAstana/";
+            nodeJSURL = "https://ailabs.kz:3201";
             fbToken = "EAAbK7dGSQ34BAFaBTKqBYVi28kBjNMnksZA4eRrXZAMmLiND3vlwk9kHXbK6QFs8EymvgcFy5vk8Rhy59b05Id1XQ7k79k5wIMAjZAo7ZBRM058C8EPnHZBzQf1Pz3U0zHg9JrD90Vy9ulUYVwCLHulj1bVmPAUqtUS6VVkdexQZDZD";//Dake Bot
             //fbToken = "EAAWkji7QfbsBAKfnszePq1ZCBiewzq3lIy9OPOyPYT3N3kFntwFoXDQlXXwnWQNQuJaLzZB11QHCl1zpohPT7ZAwcHgywZA18X3T2x096z7eoLCmKeApVu3aIbsoogm6qZC79wob3vjdvPC6kB7EMmI2aUH22qQVHvNh1hiQmZBGMnpGBSY3se";//AILabsDemoBot    
         }

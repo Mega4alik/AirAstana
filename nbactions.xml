@@ -12,8 +12,10 @@
             </goals>
             <properties>
                 <netbeans.deploy>true</netbeans.deploy>
+                <Env.GOOGLE_APPLICATION_CREDENTIALS>"/home/ubuntu/ai/AirAstana/ailabskz10-6bacc204303a.json"</Env.GOOGLE_APPLICATION_CREDENTIALS>
                 
-                <Env.GOOGLE_APPLICATION_CREDENTIALS>/Users/admin/Desktop/NetBeansProjects/aira/tourism-fec23-4a9e904a7f25.json</Env.GOOGLE_APPLICATION_CREDENTIALS>               
+                
+                               
             </properties>
         </action>
         <action>
@@ -30,20 +32,20 @@
                 <exec.executable>java</exec.executable>
                 <exec.classpathScope>${classPathScope}</exec.classpathScope>
                 
-                <Env.GOOGLE_APPLICATION_CREDENTIALS>/Users/admin/Desktop/NetBeansProjects/aira/tourism-fec23-4a9e904a7f25.json</Env.GOOGLE_APPLICATION_CREDENTIALS>
+                <Env.GOOGLE_APPLICATION_CREDENTIALS>/home/ubuntu/ai/AirAstana/ailabskz10-6bacc204303a.json</Env.GOOGLE_APPLICATION_CREDENTIALS>
             </properties>
         </action>
-        <action>
-            <actionName>build</actionName>
-            <packagings>
-                <packaging>*</packaging>
-            </packagings>
-            <goals>
-                <goal>install</goal>
-            </goals>
-            <properties>
-                
-                
-            </properties>
-        </action>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </actions>

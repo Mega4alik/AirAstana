@@ -9,6 +9,7 @@ package dialogflow;
  *
  * @author admin
  */
+
 import cm.API;
 import com.google.gson.Gson;
 import global.Conn;
@@ -16,6 +17,7 @@ import global.Global;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -24,22 +26,86 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class DF {
     Global g = new Global();
+    Gson gson = new Gson();
+    static boolean initialized = false;
+    
     public static void main(String args[]) throws Exception {
-        DF df = new DF();
+        DF df = new DF();        
         df.getResponse("привет");
+        //df.getResponseV1("привет");
     }
+    
+    public DF(){
+        if (!initialized) 
+        try{
+            initialized = true;
+            updateEnv("GOOGLE_APPLICATION_CREDENTIALS", g.Path+"ailabskz10-6bacc204303a.json");
+        } catch(Exception e) {}
+    }
+    
+    @SuppressWarnings({ "unchecked" })
+    public static void updateEnv(String name, String val) throws ReflectiveOperationException {
+      Map<String, String> env = System.getenv();
+      Field field = env.getClass().getDeclaredField("m");
+      field.setAccessible(true);
+      ((Map<String, String>) field.get(env)).put(name, val);
+    }
+    
+    
+    public DFNode getResponseV1(String question) throws Exception {        
+        DFNode node = new DFNode();
+        question = URLEncoder.encode(question);
+        //curl -H "Content-Type: application/json; charset=utf-8"  -H "Authorization: Bearer ya29.c.ElrwBgIOJ0f57wsXXenZTZVQsvhm5QHWqBD0oRfxLQMr_0-h2j-IexWBIuKJbg04-rvUwCozAqLIHJlZxthcyN4wNjrtmK27Pa2cdPxVmeB2xaBUhcbNub0hoLk"  -d "{\"queryInput\":{\"text\":{\"text\":\"start\",\"languageCode\":\"ru\"}},\"queryParams\":{\"timeZone\":\"Asia/Almaty\"}}" "https://dialogflow.googleapis.com/v2/projects/spherical-entry-232803/agent/sessions/8896ed53-6ba0-7e06-6ebd-e8c4ccb04bee:detectIntent"
+        //curl 'https://api.dialogflow.com/v1/query?v=20170712&query=start&lang=ru&sessionId=8896ed53-6ba0-7e06-6ebd-e8c4ccb04bee&timezone=Asia/Almaty' -H 'Authorization:Bearer d85c464908304e5da06b0975575546c6'
+        //https://dialogflow.googleapis.com/v2/projects/spherical-entry-232803/agent/sessions/8896ed53-6ba0-7e06-6ebd-e8c4ccb04bee:detectIntent
+        HttpURLConnection httpcon = (HttpURLConnection) ((new URL("https://api.dialogflow.com/v1/query?v=20170712&query="+question+"&lang="+(g.LangDefault == 2 ? "en":"ru")+"&sessionId=8896ed53-6ba0-7e06-6ebd-e8c4ccb04bee&timezone=Asia/Almaty").openConnection()));
+            httpcon.setDoOutput(true);               
+            httpcon.setRequestProperty("Accept", "application/json");
+            httpcon.setRequestMethod("GET");            
+            httpcon.setRequestProperty("Authorization", "Bearer " + (g.LangDefault==2 ? "" : "d85c464908304e5da06b0975575546c6"));            
+            httpcon.connect();                      
+            InputStream content = (InputStream) httpcon.getInputStream();
+            BufferedReader in   = new BufferedReader (new InputStreamReader (content));
+            String line, jsonSt = "";
+            while ((line = in.readLine()) != null) jsonSt+=line;                               
+            //System.out.println(jsonSt);
+            
+            JSONObject obj = new JSONObject(jsonSt);
+            JSONObject result = obj.getJSONObject("result"); 
+            
+            if (result.has("metadata")){
+                JSONObject metadata = result.getJSONObject("metadata");
+                if (metadata.has("intentName")) node.intentName = metadata.getString("intentName");
+            }                        
+            if (result.has("action")) node.action = result.getString("action");
+            if (result.has("fulfillment")){
+                JSONObject fulfillment = result.getJSONObject("fulfillment");                
+                node.speech = fulfillment.getString("speech");
+                /*
+                if (fulfillment.has("messages")){
+                   String message = fulfillment.getJSONArray("messages").getJSONObject(0).getString("speech");
+                   System.out.println(message);
+                }*/                
+            }
+            System.out.println(gson.toJson(node));
+            
+            return node;            
+    }
+        
     
     public DFNode getResponse(String question) throws Exception {
         DFNode node = new DFNode();
         API api = new API();
-        node = api.detectIntentTexts(node, "tourism-fec23", question,
-        "1cf9c76b-c880-0535-7416-426430832775", "ru");
-        
+        System.out.println("getting response");
+        //node = api.detectIntentTexts(node, "tourism-fec23", question,  "1cf9c76b-c880-0535-7416-426430832775", "ru");
+        node = api.detectIntentTexts(node, "spherical-entry-232803", question,  "8896ed53-6ba0-7e06-6ebd-e8c4ccb04bee", "ru");
+        System.out.println(gson.toJson(node));
         return node;            
     }
     
